@@ -1,7 +1,7 @@
 export default function BrandMark({ compact = false }) {
   return (
     <div
-      className={`flex ${compact ? "items-center gap-3" : "flex-col items-center gap-5"}`}
+      className={`flex ${compact ? "items-center gap-2.5 sm:gap-3" : "flex-col items-center gap-5"}`}
     >
       <svg
         viewBox="0 0 320 250"
@@ -109,15 +109,15 @@ export default function BrandMark({ compact = false }) {
         />
       </svg>
 
-      <div className={compact ? "leading-none" : "text-center"}>
+      <div className={compact ? "min-w-0 leading-none" : "text-center"}>
         <div
-          className={`${compact ? "text-sm sm:text-base" : "text-3xl sm:text-4xl"} font-serif uppercase tracking-normal`}
+          className={`${compact ? "truncate text-[0.82rem] sm:text-base" : "text-3xl sm:text-4xl"} font-serif uppercase tracking-normal`}
           style={{ color: "var(--brand-blue)" }}
         >
           Vaidik Vidyapeeth
         </div>
         <div
-          className={`${compact ? "text-[9px] sm:text-[10px]" : "mt-2 text-xs sm:text-sm"} uppercase tracking-widest`}
+          className={`${compact ? "truncate text-[8px] sm:text-[10px]" : "mt-2 text-xs sm:text-sm"} uppercase tracking-widest`}
           style={{ color: "var(--brand-red)", letterSpacing: ".1em" }}
         >
           Kathmandu-32, Koteshwor

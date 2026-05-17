@@ -1,8 +1,13 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import BrandMark from "./brand-mark";
 import { navigation } from "../lib/site-content";
 
 export default function SiteHeader() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <>
       {/* Top announcement bar */}
@@ -45,16 +50,38 @@ export default function SiteHeader() {
       <div className="page-nav-shell">
         <div className="mx-auto max-w-7xl px-6 pt-5 sm:px-8 lg:px-10">
           <header className="site-header">
-            <Link href="/" className="inline-flex">
-              <BrandMark compact />
-            </Link>
+            <div className="flex items-center justify-between gap-4">
+              <Link href="/" className="inline-flex" onClick={() => setIsMenuOpen(false)}>
+                <BrandMark compact />
+              </Link>
 
-            <nav className="flex flex-wrap items-center justify-end gap-1 text-sm font-medium">
+              <button
+                type="button"
+                className="mobile-menu-button lg:hidden"
+                aria-expanded={isMenuOpen}
+                aria-controls="site-navigation"
+                aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+                onClick={() => setIsMenuOpen((open) => !open)}
+              >
+                <span className="mobile-menu-button-copy">Menu</span>
+                <span className="mobile-menu-icon" aria-hidden="true">
+                  <span className="mobile-menu-bar" />
+                  <span className="mobile-menu-bar" />
+                  <span className="mobile-menu-bar" />
+                </span>
+              </button>
+            </div>
+
+            <nav
+              id="site-navigation"
+              className={`${isMenuOpen ? "flex" : "hidden"} flex-col items-stretch gap-2 text-sm font-medium lg:flex lg:flex-row lg:flex-wrap lg:items-center lg:justify-end lg:gap-1`}
+            >
               {navigation.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={item.href === "/contact" ? "nav-cta" : "nav-pill"}
+                  className={`${item.href === "/contact" ? "nav-cta" : "nav-pill"} w-full text-center lg:w-auto`}
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
                 </Link>
