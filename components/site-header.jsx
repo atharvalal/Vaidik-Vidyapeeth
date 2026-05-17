@@ -57,7 +57,7 @@ export default function SiteHeader() {
 
               <button
                 type="button"
-                className="mobile-menu-button lg:hidden"
+                className="mobile-menu-button inline-flex md:hidden"
                 aria-expanded={isMenuOpen}
                 aria-controls="site-navigation"
                 aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
@@ -74,13 +74,13 @@ export default function SiteHeader() {
 
             <nav
               id="site-navigation"
-              className={`${isMenuOpen ? "flex" : "hidden"} flex-col items-stretch gap-2 text-sm font-medium lg:flex lg:flex-row lg:flex-wrap lg:items-center lg:justify-end lg:gap-1`}
+              className={`${isMenuOpen ? "flex" : "hidden"} flex-col items-stretch gap-2 text-sm font-medium md:flex md:flex-row md:flex-wrap md:items-center md:justify-end md:gap-1`}
             >
               {navigation.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`${item.href === "/contact" ? "nav-cta" : "nav-pill"} w-full text-center lg:w-auto`}
+                  className={`${item.href === "/contact" ? "nav-cta" : "nav-pill"} w-full text-center md:w-auto`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
