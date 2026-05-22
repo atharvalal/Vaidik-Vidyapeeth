@@ -1,7 +1,14 @@
 import Link from "next/link";
 import SectionHeading from "../components/section-heading";
 import SiteShell from "../components/site-shell";
-import { facilities, highlights, programs, quickFacts, updates } from "../lib/site-content";
+import {
+  facilities,
+  highlights,
+  programs,
+  quickFacts,
+  schoolStrengths,
+  updates
+} from "../lib/site-content";
 
 export default function HomePage() {
   return (
@@ -20,8 +27,17 @@ export default function HomePage() {
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3">
-              <Link href="/admissions" className="hero-primary">Start Admission Inquiry</Link>
+              <Link href="/admissions" className="hero-primary">
+                Start Admission Inquiry
+                <span aria-hidden="true">-&gt;</span>
+              </Link>
               <Link href="/about" className="hero-secondary">Explore School Overview</Link>
+            </div>
+
+            <div className="hero-trust-row" aria-label="School strengths">
+              <span>Warm campus culture</span>
+              <span>Active classrooms</span>
+              <span>Guided progress</span>
             </div>
 
             <div className="mt-7 grid gap-3 sm:grid-cols-3">
@@ -36,6 +52,10 @@ export default function HomePage() {
 
           <aside className="hero-panel">
             <div className="hero-visual">
+              <div className="hero-mini-card">
+                <span className="hero-mini-card-value">3</span>
+                <span className="hero-mini-card-label">Academic wings</span>
+              </div>
               <div className="hero-visual-copy">
                 <p className="hero-visual-eyebrow">Learning Environment</p>
                 <h3 className="hero-visual-title">Structured days, active classrooms, confident students</h3>
@@ -109,6 +129,31 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="section-block strength-band">
+        <div className="mx-auto max-w-7xl px-6 py-18 sm:px-8 lg:px-10">
+          <div className="strength-layout">
+            <SectionHeading
+              eyebrow="Why Families Choose Us"
+              title="A school day shaped around clarity, confidence, and care."
+              text="The experience is designed to help students feel known, stay engaged, and build habits that matter beyond the classroom."
+            />
+
+            <div className="strength-list">
+              {schoolStrengths.map((item, index) => (
+                <article key={item.title} className="strength-card">
+                  <div className="strength-index">{String(index + 1).padStart(2, "0")}</div>
+                  <div>
+                    <p className="feature-label">{item.label}</p>
+                    <h3 className="feature-title">{item.title}</h3>
+                    <p className="feature-copy">{item.text}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section-block section-soft">
         <div className="mx-auto max-w-7xl px-6 py-18 sm:px-8 lg:px-10">
           <SectionHeading
@@ -120,7 +165,7 @@ export default function HomePage() {
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {programs.map((program) => (
               <article key={program.title} className="program-card">
-                <p className="program-kicker">Academic Wing</p>
+                <p className="program-kicker">{program.stage}</p>
                 <h3 className="program-title">{program.title}</h3>
                 <p className="program-copy">{program.text}</p>
                 <div className="program-line" />
@@ -151,7 +196,10 @@ export default function HomePage() {
               ))}
             </div>
 
-            <Link href="/facilities" className="hero-primary mt-8 inline-flex">See All Facilities</Link>
+            <Link href="/facilities" className="hero-primary mt-8 inline-flex">
+              See All Facilities
+              <span aria-hidden="true">-&gt;</span>
+            </Link>
           </div>
 
           <div className="updates-panel">
